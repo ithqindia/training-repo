@@ -5,33 +5,47 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sum of 2 Numbers</title>
+    <title>Sum of two Numbers</title>
 </head>
 
 <body>
-    <div class="container">
+    <form id="container">
         <input type="number" id="number1" placeholder="First number..."><br>
         <br>
         <input type="number" id="number2" placeholder="Second Number..."><br>
         <br>
-        <input type="button" value="Submit" onclick="submit()">
-        <br>
-        <div id="add"></div>
-    </div>
+        <!-- <input type="button" value="Submit" onclick="submit()"> -->
+        <!-- <div id="add"></div> -->
+        <output id="message"></output>
+    </form>
 
     <script>
-        function submit() {
-            var num1 = document.getElementById("number1").value;
-            var num2 = document.getElementById("number2").value;
-            var sum = parseFloat(num1) + parseFloat(num2);
+        // function submit() {
+        //     var num1 = document.getElementById("number1").value;
+        //     var num2 = document.getElementById("number2").value;
+        //     var sum;
+        //     // parseFloat(num1) + parseFloat(num2);
 
-            if (num1 > 1000 || num2 > 1000)
-                alert('Too large number');
-            if (sum > 1000)
-                alert('Cannot add, sum too large');
-            else
-                document.getElementById("add").innerHTML = sum;
-        }
+        //     if (num1 > 1000 || num2 > 1000)
+        //         alert('Too large number');
+        //     if (sum > 1000)
+        //         alert('Cannot add, sum too large');
+        //     else
+        //         document.getElementById("add").innerHTML = sum;
+        // }
+
+        /* Using valueAsNumber to avoid usage of parseInt or parseFloat in string to number conversion*/
+
+        var container = document.forms.container;
+
+        var contain = container.elements;
+
+        container.addEventListener('input', function (sum) {
+            if (sum.target.type === 'number') {
+                contain.message.value = contain.number1.valueAsNumber + contain.number2.valueAsNumber;
+            }
+        }, false);
+
     </script>
 </body>
 
