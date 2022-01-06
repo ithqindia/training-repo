@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sum of 2 Numbers</title>
+</head>
+
+<body>
+    <div class="container">
+        <input type="number" id="number1" placeholder="First number..."><br>
+        <br>
+        <input type="number" id="number2" placeholder="Second Number..."><br>
+        <br>
+        <input type="button" value="Submit" onclick="submit()">
+        <br>
+        <div id="add"></div>
+    </div>
+
+    <script>
+        function submit() {
+            var num1 = document.getElementById("number1").value;
+            var num2 = document.getElementById("number2").value;
+            var sum = parseFloat(num1) + parseFloat(num2);
+
+            if (num1 > 1000 || num2 > 1000)
+                alert('Too large number');
+            if (sum > 1000)
+                alert('Cannot add, sum too large');
+            else
+                document.getElementById("add").innerHTML = sum;
+        }
+    </script>
+</body>
+
+</html>
