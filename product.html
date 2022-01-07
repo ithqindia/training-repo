@@ -16,7 +16,17 @@
         <br>
         <input type="number" id="number3" onchange="productCheck()" placeholder="discount"><br>
         <br>
-        <div id="total" onchange="productCheck()"></div>
+        <div id="total" onchange="productCheck()"></div><br>
+    </form>
+
+    <form>
+        <input type="number" id="number4" onchange="productCheck()" placeholder="product price"><br>
+        <br>
+        <input type="number" id="number5" onchange="productCheck()" placeholder="qty"><br>
+        <br>
+        <input type="number" id="number6" onchange="productCheck()" placeholder="discount"><br>
+        <br>
+        <div id="total1" onchange="productCheck()"></div>
     </form>
 
     <script>
@@ -24,6 +34,7 @@
             var price = document.getElementById("number1").value;
             var quantity = document.getElementById("number2").value;
             var discount = document.getElementById("number3").value;
+
             var total = parseFloat(price) * parseInt(quantity);
             var discount_applied = parseFloat(total * discount / 100);
             var eff_price = parseFloat(total) - parseFloat(discount_applied);
@@ -32,6 +43,20 @@
                 return " ";
             if (price > 0 && quantity > 0) {
                 document.getElementById("total").innerHTML = eff_price.toFixed(2);
+            }
+
+            var price1 = document.getElementById("number4").value;
+            var quantity1 = document.getElementById("number5").value;
+            var discount1 = document.getElementById("number6").value;
+
+            var total1 = parseFloat(price1) * parseInt(quantity1);
+            var discount_applied1 = parseFloat(total * discount1 / 100);
+            var eff_price1 = parseFloat(total1) - parseFloat(discount_applied1);
+
+            if (isNaN(eff_price1))
+                return " ";
+            if (price1 > 0 && quantity1 > 0) {
+                document.getElementById("total1").innerHTML = eff_price1.toFixed(2);
             }
         }
     </script>
