@@ -10,16 +10,16 @@
 <body>
 
     <form id="users">
-        <div class="addFields">
-            <input type="number" id="number1" name="number1" placeholder="product price" onchange="productCheck()"><br>
+        <div class="addFields" onchange="productCheck()">
+            <input type="number" id="number1" name="number[]" placeholder="product price" onchange="productCheck()"><br>
             <br>
-            <input type="number" id="number2" name="number2" placeholder="qty" onchange="productCheck()"><br>
+            <input type="number" id="number2" name="number[]" placeholder="qty" onchange="productCheck()"><br>
             <br>
-            <input type="number" id="number3" name="number3" placeholder="discount" onchange="productCheck()"><br>
+            <input type="number" id="number3" name="number[]" placeholder="discount" onchange="productCheck()"><br>
             <br>
             <div id="total" onchange="productCheck()"></div><br>
         </div>
-        <button id='add-products' onchange="productCheck()">Add more fields</button><br><br>
+        <button id='add-products'>Add more fields</button><br><br>
     </form>
 
     <!-- <form>
@@ -34,19 +34,16 @@
 
     <script>
         function productCheck() {
+            var price, quantity, discount, eff_price;
 
-            var price = document.getElementById("number1").value;
-            var quantity = document.getElementById("number2").value;
-            var discount = document.getElementById("number3").value;
+            price = document.getElementById("number1").value;
+            quantity = document.getElementById("number2").value;
+            discount = document.getElementById("number3").value;
 
-            // const product = [];
-            // product[0] = price;
-            // product[1] = quantity;
-            // product[2] = discount;
 
-            var total = parseFloat(price) * parseInt(quantity);
-            var discount_applied = parseFloat(total * discount / 100);
-            var eff_price = parseFloat(total) - parseFloat(discount_applied);
+            total = parseFloat(price) * parseInt(quantity);
+            discount_applied = parseFloat(total * discount / 100);
+            eff_price = parseFloat(total) - parseFloat(discount_applied);
 
             if (isNaN(eff_price))
                 return " ";
@@ -55,6 +52,19 @@
                 document.getElementById("total").innerHTML = eff_price.toFixed(2);
             }
 
+
+            (function () {
+                var button = document.getElementById("add-products");
+                button.addEventListener('click', function (event) {
+                    event.preventDefault();
+                    var cln = document.getElementsByClassName("addFields")[0].cloneNode(true);
+                    document.getElementById("users").insertBefore(cln, this);
+                    var t = document.getElementById("total")[0].cloneNode(true);
+                    document.getElementById("total").insertBefore(t, this);
+                    return false;
+                });
+            })();
+        }
             // var price1 = document.getElementById("number4").value;
             // var quantity1 = document.getElementById("number5").value;
             // var discount1 = document.getElementById("number6").value;
@@ -68,26 +78,6 @@
             // if (price1 > 0 && quantity1 > 0) {
             //     document.getElementById("total1").innerHTML = eff_price1.toFixed(2);
             // }
-
-            var button = document.getElementById("add-products");
-            button.addEventListener('click', function (event) {
-                event.preventDefault();
-                var cln = document.getElementsByClassName("addFields")[0].cloneNode(true);
-                document.getElementById("users").insertBefore(cln, this);
-                return false;
-            });
-
-        }
-
-        // (function () {
-        //     var button = document.getElementById("add-products");
-        //     button.addEventListener('click', function (event) {
-        //         event.preventDefault();
-        //         var cln = document.getElementsByClassName("addFields")[0].cloneNode(true);
-        //         document.getElementById("users").insertBefore(cln, this);
-        //         return false;
-        //     });
-        // })();
 
     </script>
 </body>
