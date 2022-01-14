@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Price Check</title>
+</head>
+
+<body>
+
+    <!-- <input type="number" id="number1" placeholder="product price" onchange="productCheck()"><br>
+            <br>
+            <input type="number" id="number1" placeholder="qty" onchange="productCheck()"><br>
+            <br>
+            <input type="number" id="number1" placeholder="discount" onchange="productCheck()"><br>
+            <br> -->
+
+    <button id='add-products' onclick="productCheck()" onchange="handleChange()">Add more fields</button><br><br>
+
+    <!-- <form>
+        <input type="number" id="number4" onchange="productCheck()" placeholder="product price"><br>
+        <br>
+        <input type="number" id="number5" onchange="productCheck()" placeholder="qty"><br>
+        <br>
+        <input type="number" id="number6" onchange="productCheck()" placeholder="discount"><br>
+        <br>
+        <div id="total1" onchange="productCheck()"></div>
+    </form> -->
+
+    <script>
+        var br = document.createElement("br");
+        // var price, quantity, discount, eff_price;
+        function productCheck() {
+            // price = document.getElementById("number1").value;
+            // quantity = document.getElementById("number2").value;
+            // discount = document.getElementById("number3").value;
+
+
+            // total = parseFloat(price) * parseInt(quantity);
+            // discount_applied = parseFloat(total * discount / 100);
+            // eff_price = parseFloat(total) - parseFloat(discount_applied);
+
+            // if (isNaN(eff_price))
+            //     return " ";
+
+            // if (price > 0 && quantity > 0) {
+            //     document.getElementById("total").innerHTML = eff_price.toFixed(2);
+            // }
+
+            // var button = document.getElementById("add-products");
+            // button.addEventListener('click', function (event) {
+            //     event.preventDefault();
+            //     var cln = document.getElementsByClassName("addFields")[0].cloneNode(true);
+            //     document.getElementById("users").insertBefore(cln, this);
+            //     var t = document.getElementById("total")[0].cloneNode(true);
+            //     document.getElementById("total").insertBefore(t, this);
+
+            //     if (price > 0 && quantity > 0) {
+            //         document.getElementById("total").innerHTML = eff_price.toFixed(2);
+            //     }
+            //     return false;
+            // });
+
+
+            var form = document.createElement("form");
+
+            for (var i = 0; i < 5; i++) {
+                var price = document.createElement("input");
+                price.setAttribute("type", "number");
+                price.setAttribute("id", "number1");
+                price.setAttribute("placeholder", "Product Price");
+                price.onchange = handleChange;
+
+                var qty = document.createElement("input");
+                qty.setAttribute("type", "number");
+                qty.setAttribute("id", "number2");
+                qty.setAttribute("placeholder", "quantity");
+                qty.onchange = handleChange;
+
+                var discount = document.createElement("input");
+                discount.setAttribute("type", "number");
+                discount.setAttribute("id", "number3");
+                discount.setAttribute("placeholder", "discount");
+                discount.onchange = handleChange;
+
+                var div = document.createElement("div");
+                div.setAttribute("id", "total");
+                form.appendChild(br.cloneNode());
+                div.onchange = handleChange;
+
+                form.appendChild(price);
+                // Inserting a line break
+                form.appendChild(br.cloneNode());
+                form.appendChild(br.cloneNode());
+
+                form.appendChild(qty);
+                form.appendChild(br.cloneNode());
+                form.appendChild(br.cloneNode());
+
+                form.appendChild(discount);
+                form.appendChild(br.cloneNode());
+                form.appendChild(br.cloneNode());
+
+                form.appendChild(div);
+                form.appendChild(br.cloneNode());
+
+                document.getElementsByTagName("body")[0]
+                    .appendChild(form);
+            }
+        }
+
+        function handleChange() {
+            var p = document.getElementById("number1").value;
+            var q = document.getElementById("number2").value;
+            var d = document.getElementById("number3").value;
+
+            var total = parseFloat(p) * parseInt(q);
+            var discount_applied = parseFloat(total * d / 100);
+            var eff_price = parseFloat(total) - parseFloat(discount_applied);
+
+            if (isNaN(eff_price))
+                return " ";
+
+            if (p > 0 && q > 0)
+                document.getElementById("total").innerHTML = eff_price.toFixed(2);
+        }
+
+            // var price1 = document.getElementById("number4").value;
+            // var quantity1 = document.getElementById("number5").value;
+            // var discount1 = document.getElementById("number6").value;
+
+            // var total1 = parseFloat(price1) * parseInt(quantity1);
+            // var discount_applied1 = parseFloat(total * discount1 / 100);
+            // var eff_price1 = parseFloat(total1) - parseFloat(discount_applied1);
+
+            // if (isNaN(eff_price1))
+            //     return " ";
+            // if (price1 > 0 && quantity1 > 0) {
+            //     document.getElementById("total1").innerHTML = eff_price1.toFixed(2);
+            // }
+
+    </script>
+</body>
+
+
+</html>

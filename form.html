@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <input type="text" name="a[]" value="1" />
+    <input type="text" name="b[]" value="2" />
+    <input type="text" name="a[]" value="3" />
+    <input type="text" name="b[]" value="4" />
+    <button id="sub">sbumit</button>
+  </body>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+  <script>
+    $("#sub").click(function () {
+      var input = document.getElementsByName("a[]");
+
+      for (var i = 0; i < input.length; i++) {
+        var a = input[i].value;
+        var k = k + "array[" + i + "].value= " + a.value + " ";
+        console.log(a);
+      }
+    });
+  </script>
+</html>
