@@ -18,113 +18,108 @@
 
     <button id='add-products' onclick="productCheck()" onchange="handleChange()">Add more fields</button><br><br>
 
-    <!-- <form>
-        <input type="number" id="number4" onchange="productCheck()" placeholder="product price"><br>
+    <!-- <form id=>
+        <input type="number" id="number1" name="number1[]" onchange="handleChange()" placeholder="product price"><br>
         <br>
-        <input type="number" id="number5" onchange="productCheck()" placeholder="qty"><br>
+        <input type="number" id="number2" name="number2[]" onchange="handleChange()" placeholder="qty"><br>
         <br>
-        <input type="number" id="number6" onchange="productCheck()" placeholder="discount"><br>
+        <input type="number" id="number3" name="number3[]" onchange="handleChange()" placeholder="discount"><br>
         <br>
-        <div id="total1" onchange="productCheck()"></div>
+        <div id="total" onchange="handleChange()"></div>
     </form> -->
 
     <script>
         var br = document.createElement("br");
         // var price, quantity, discount, eff_price;
         function productCheck() {
-            // price = document.getElementById("number1").value;
-            // quantity = document.getElementById("number2").value;
-            // discount = document.getElementById("number3").value;
-
-
-            // total = parseFloat(price) * parseInt(quantity);
-            // discount_applied = parseFloat(total * discount / 100);
-            // eff_price = parseFloat(total) - parseFloat(discount_applied);
-
-            // if (isNaN(eff_price))
-            //     return " ";
-
-            // if (price > 0 && quantity > 0) {
-            //     document.getElementById("total").innerHTML = eff_price.toFixed(2);
-            // }
-
-            // var button = document.getElementById("add-products");
-            // button.addEventListener('click', function (event) {
-            //     event.preventDefault();
-            //     var cln = document.getElementsByClassName("addFields")[0].cloneNode(true);
-            //     document.getElementById("users").insertBefore(cln, this);
-            //     var t = document.getElementById("total")[0].cloneNode(true);
-            //     document.getElementById("total").insertBefore(t, this);
-
-            //     if (price > 0 && quantity > 0) {
-            //         document.getElementById("total").innerHTML = eff_price.toFixed(2);
-            //     }
-            //     return false;
-            // });
-
 
             var form = document.createElement("form");
+            form.setAttribute("id", "products");
 
-            for (var i = 0; i < 5; i++) {
-                var price = document.createElement("input");
-                price.setAttribute("type", "number");
-                price.setAttribute("id", "number1");
-                price.setAttribute("placeholder", "Product Price");
-                price.onchange = handleChange;
+            var price = document.createElement("input");
+            price.setAttribute("type", "number");
+            // price.setAttribute("id", "number1");
+            price.setAttribute("name", "number1[]");
+            price.setAttribute("placeholder", "Product Price");
+            price.onchange = handleChange;
 
-                var qty = document.createElement("input");
-                qty.setAttribute("type", "number");
-                qty.setAttribute("id", "number2");
-                qty.setAttribute("placeholder", "quantity");
-                qty.onchange = handleChange;
+            var qty = document.createElement("input");
+            qty.setAttribute("type", "number");
+            // qty.setAttribute("id", "number2");
+            qty.setAttribute("name", "number2[]");
+            qty.setAttribute("placeholder", "quantity");
+            qty.onchange = handleChange;
 
-                var discount = document.createElement("input");
-                discount.setAttribute("type", "number");
-                discount.setAttribute("id", "number3");
-                discount.setAttribute("placeholder", "discount");
-                discount.onchange = handleChange;
+            var discount = document.createElement("input");
+            discount.setAttribute("type", "number");
+            // discount.setAttribute("id", "number3");
+            discount.setAttribute("name", "number3[]");
+            discount.setAttribute("placeholder", "discount");
+            discount.onchange = handleChange;
 
-                var div = document.createElement("div");
-                div.setAttribute("id", "total");
-                form.appendChild(br.cloneNode());
-                div.onchange = handleChange;
+            var div = document.createElement("div");
+            div.setAttribute("id", "total");
+            form.appendChild(br.cloneNode());
+            div.onchange = handleChange;
 
-                form.appendChild(price);
-                // Inserting a line break
-                form.appendChild(br.cloneNode());
-                form.appendChild(br.cloneNode());
+            form.appendChild(price);
+            // Inserting a line break
+            form.appendChild(br.cloneNode());
+            form.appendChild(br.cloneNode());
 
-                form.appendChild(qty);
-                form.appendChild(br.cloneNode());
-                form.appendChild(br.cloneNode());
+            form.appendChild(qty);
+            form.appendChild(br.cloneNode());
+            form.appendChild(br.cloneNode());
 
-                form.appendChild(discount);
-                form.appendChild(br.cloneNode());
-                form.appendChild(br.cloneNode());
+            form.appendChild(discount);
+            form.appendChild(br.cloneNode());
+            form.appendChild(br.cloneNode());
 
-                form.appendChild(div);
-                form.appendChild(br.cloneNode());
+            form.appendChild(div);
+            form.appendChild(br.cloneNode());
 
-                document.getElementsByTagName("body")[0]
-                    .appendChild(form);
-            }
+            document.getElementsByTagName("body")[0]
+                .appendChild(form);
         }
 
         function handleChange() {
-            var p = document.getElementById("number1").value;
-            var q = document.getElementById("number2").value;
-            var d = document.getElementById("number3").value;
+            var f = document.getElementById('products');
+            var p = document.getElementsByName("number1[]");
+            var q = document.getElementsByName("number2[]");
+            var d = document.getElementsByName("number3[]");
 
-            var total = parseFloat(p) * parseInt(q);
-            var discount_applied = parseFloat(total * d / 100);
-            var eff_price = parseFloat(total) - parseFloat(discount_applied);
 
-            if (isNaN(eff_price))
-                return " ";
 
-            if (p > 0 && q > 0)
-                document.getElementById("total").innerHTML = eff_price.toFixed(2);
+            for (var i = 0; i < p.length; i++) {
+                var number1 = p[i].value;
+                // var n1 = n1 + "array[" + i + "].value = " + number1.value + " ";
+
+                for (var j = 0; j < q.length; j++) {
+                    var number2 = q[j].value;
+                    // var n2 = n2 + "array[" + j + "].value = " + number2.value + " ";
+
+                    for (var k = 0; k < d.length; k++) {
+                        var number3 = d[k].value;
+                        // var n3 = n3 + "array[" + k + "].value = " + number3.value + " ";
+
+
+                        var total = parseFloat(number1) * parseInt(number2);
+                        var discount_applied = parseFloat(total * number3 / 100);
+                        var eff_price = parseFloat(total) - parseFloat(discount_applied);
+
+                        if (isNaN(eff_price))
+                            return " ";
+
+                    }
+                }
+
+            }
+            if (number1 > 0 && number2 > 0)
+                document.getElementById("total").innerHTML += " " + eff_price.toFixed(2) + "\n";
+
         }
+
+
 
             // var price1 = document.getElementById("number4").value;
             // var quantity1 = document.getElementById("number5").value;
