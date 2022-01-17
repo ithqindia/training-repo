@@ -8,29 +8,11 @@
 </head>
 
 <body>
-
-    <!-- <input type="number" id="number1" placeholder="product price" onchange="productCheck()"><br>
-            <br>
-            <input type="number" id="number1" placeholder="qty" onchange="productCheck()"><br>
-            <br>
-            <input type="number" id="number1" placeholder="discount" onchange="productCheck()"><br>
-            <br> -->
-
     <button id='add-products' onclick="productCheck()" onchange="handleChange()">Add more fields</button><br><br>
-
-    <!-- <form id=>
-        <input type="number" id="number1" name="number1[]" onchange="handleChange()" placeholder="product price"><br>
-        <br>
-        <input type="number" id="number2" name="number2[]" onchange="handleChange()" placeholder="qty"><br>
-        <br>
-        <input type="number" id="number3" name="number3[]" onchange="handleChange()" placeholder="discount"><br>
-        <br>
-        <div id="total" onchange="handleChange()"></div>
-    </form> -->
 
     <script>
         var br = document.createElement("br");
-        // var price, quantity, discount, eff_price;
+
         function productCheck() {
 
             var form = document.createElement("form");
@@ -38,21 +20,19 @@
 
             var price = document.createElement("input");
             price.setAttribute("type", "number");
-            // price.setAttribute("id", "number1");
             price.setAttribute("name", "number1[]");
             price.setAttribute("placeholder", "Product Price");
             price.onchange = handleChange;
 
             var qty = document.createElement("input");
             qty.setAttribute("type", "number");
-            // qty.setAttribute("id", "number2");
             qty.setAttribute("name", "number2[]");
             qty.setAttribute("placeholder", "quantity");
             qty.onchange = handleChange;
 
             var discount = document.createElement("input");
             discount.setAttribute("type", "number");
-            // discount.setAttribute("id", "number3");
+
             discount.setAttribute("name", "number3[]");
             discount.setAttribute("placeholder", "discount");
             discount.onchange = handleChange;
@@ -63,6 +43,7 @@
             div.onchange = handleChange;
 
             form.appendChild(price);
+
             // Inserting a line break
             form.appendChild(br.cloneNode());
             form.appendChild(br.cloneNode());
@@ -88,20 +69,12 @@
             var q = document.getElementsByName("number2[]");
             var d = document.getElementsByName("number3[]");
 
-
-
             for (var i = 0; i < p.length; i++) {
                 var number1 = p[i].value;
-                // var n1 = n1 + "array[" + i + "].value = " + number1.value + " ";
-
                 for (var j = 0; j < q.length; j++) {
                     var number2 = q[j].value;
-                    // var n2 = n2 + "array[" + j + "].value = " + number2.value + " ";
-
                     for (var k = 0; k < d.length; k++) {
                         var number3 = d[k].value;
-                        // var n3 = n3 + "array[" + k + "].value = " + number3.value + " ";
-
 
                         var total = parseFloat(number1) * parseInt(number2);
                         var discount_applied = parseFloat(total * number3 / 100);
@@ -109,31 +82,12 @@
 
                         if (isNaN(eff_price))
                             return " ";
-
                     }
                 }
-
             }
             if (number1 > 0 && number2 > 0)
                 document.getElementById("total").innerHTML += " " + eff_price.toFixed(2) + "\n";
-
         }
-
-
-
-            // var price1 = document.getElementById("number4").value;
-            // var quantity1 = document.getElementById("number5").value;
-            // var discount1 = document.getElementById("number6").value;
-
-            // var total1 = parseFloat(price1) * parseInt(quantity1);
-            // var discount_applied1 = parseFloat(total * discount1 / 100);
-            // var eff_price1 = parseFloat(total1) - parseFloat(discount_applied1);
-
-            // if (isNaN(eff_price1))
-            //     return " ";
-            // if (price1 > 0 && quantity1 > 0) {
-            //     document.getElementById("total1").innerHTML = eff_price1.toFixed(2);
-            // }
 
     </script>
 </body>
