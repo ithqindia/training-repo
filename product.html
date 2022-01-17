@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Price Check</title>
+</head>
+
+<body>
+    <button id='add-products' onclick="productCheck()" onchange="handleChange()">Add more fields</button><br><br>
+
+    <script>
+        var br = document.createElement("br");
+
+        function productCheck() {
+
+            var form = document.createElement("form");
+            form.setAttribute("id", "products");
+
+            var price = document.createElement("input");
+            price.setAttribute("type", "number");
+            price.setAttribute("name", "number1[]");
+            price.setAttribute("placeholder", "Product Price");
+            price.onchange = handleChange;
+
+            var qty = document.createElement("input");
+            qty.setAttribute("type", "number");
+            qty.setAttribute("name", "number2[]");
+            qty.setAttribute("placeholder", "quantity");
+            qty.onchange = handleChange;
+
+            var discount = document.createElement("input");
+            discount.setAttribute("type", "number");
+
+            discount.setAttribute("name", "number3[]");
+            discount.setAttribute("placeholder", "discount");
+            discount.onchange = handleChange;
+
+            var div = document.createElement("div");
+            div.setAttribute("id", "total");
+            form.appendChild(br.cloneNode());
+            div.onchange = handleChange;
+
+            form.appendChild(price);
+
+            // Inserting a line break
+            form.appendChild(br.cloneNode());
+            form.appendChild(br.cloneNode());
+
+            form.appendChild(qty);
+            form.appendChild(br.cloneNode());
+            form.appendChild(br.cloneNode());
+
+            form.appendChild(discount);
+            form.appendChild(br.cloneNode());
+            form.appendChild(br.cloneNode());
+
+            form.appendChild(div);
+            form.appendChild(br.cloneNode());
+
+            document.getElementsByTagName("body")[0]
+                .appendChild(form);
+        }
+
+        function handleChange() {
+            var f = document.getElementById('products');
+            var p = document.getElementsByName("number1[]");
+            var q = document.getElementsByName("number2[]");
+            var d = document.getElementsByName("number3[]");
+
+            for (var i = 0; i < p.length; i++) {
+                var number1 = p[i].value;
+                for (var j = 0; j < q.length; j++) {
+                    var number2 = q[j].value;
+                    for (var k = 0; k < d.length; k++) {
+                        var number3 = d[k].value;
+
+                        var total = parseFloat(number1) * parseInt(number2);
+                        var discount_applied = parseFloat(total * number3 / 100);
+                        var eff_price = parseFloat(total) - parseFloat(discount_applied);
+
+                        if (isNaN(eff_price))
+                            return " ";
+                    }
+                }
+            }
+            if (number1 > 0 && number2 > 0)
+                document.getElementById("total").innerHTML += " " + eff_price.toFixed(2) + "\n";
+        }
+
+    </script>
+</body>
+
+
+</html>
